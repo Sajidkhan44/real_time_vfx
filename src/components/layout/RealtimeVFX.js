@@ -1,8 +1,6 @@
 "use client";
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import LocomotiveScroll from 'locomotive-scroll';
-import 'locomotive-scroll/dist/locomotive-scroll.css';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import { useEffect, useRef } from 'react';
@@ -11,46 +9,51 @@ gsap.registerPlugin( ScrollTrigger );
 export default function RealtimeVFX( { children } ) {
   const scrollRef = useRef( null );
 
-  useEffect( () => {
-    if ( !scrollRef.current ) return;
+// useEffect(() => {
+//   if (typeof window === 'undefined' || !scrollRef.current) return;
 
-    const scrollEl = scrollRef.current;
+//   import('locomotive-scroll').then((LocomotiveScrollModule) => {
+//     const LocomotiveScroll = LocomotiveScrollModule.default;
 
-    const locoScroll = new LocomotiveScroll( {
-      el: scrollEl,
-      smooth: true,
-      lerp: 0.05,
-    } );
+//     const scrollEl = scrollRef.current;
 
-    ScrollTrigger.scrollerProxy( scrollEl, {
-      scrollTop( value ) {
-        return arguments.length
-          ? locoScroll.scrollTo( value, 0, 0 )
-          : locoScroll.scroll.instance.scroll.y;
-      },
-      getBoundingClientRect() {
-        return {
-          top: 0,
-          left: 0,
-          width: window.innerWidth,
-          height: window.innerHeight,
-        };
-      },
-      pinType: scrollEl.style.transform ? 'transform' : 'fixed',
-    } );
+//     const locoScroll = new LocomotiveScroll({
+//       el: scrollEl,
+//       smooth: true,
+//       lerp: 0.05,
+//     });
 
-    locoScroll.on( 'scroll', ScrollTrigger.update );
+//     ScrollTrigger.scrollerProxy(scrollEl, {
+//       scrollTop(value) {
+//         return arguments.length
+//           ? locoScroll.scrollTo(value, 0, 0)
+//           : locoScroll.scroll.instance.scroll.y;
+//       },
+//       getBoundingClientRect() {
+//         return {
+//           top: 0,
+//           left: 0,
+//           width: window.innerWidth,
+//           height: window.innerHeight,
+//         };
+//       },
+//       pinType: scrollEl.style.transform ? 'transform' : 'fixed',
+//     });
 
-    ScrollTrigger.addEventListener( 'refresh', () => locoScroll.update() );
-    ScrollTrigger.refresh();
+//     locoScroll.on('scroll', ScrollTrigger.update);
 
-    return () => {
-      if ( locoScroll ) locoScroll.destroy();
-      ScrollTrigger.removeEventListener( 'refresh', () => locoScroll.update() );
-    };
-  }, [] );
+//     ScrollTrigger.addEventListener('refresh', () => locoScroll.update());
+//     ScrollTrigger.refresh();
+
+//     return () => {
+//       locoScroll.destroy();
+//       ScrollTrigger.removeEventListener('refresh', () => locoScroll.update());
+//     };
+//   });
+// }, []);
+
   return (
-    <div id="main-scroll" data-scroll-container ref={scrollRef}>
+    <div  ref={scrollRef}>
       <Navbar />
       {children}
       <Footer />

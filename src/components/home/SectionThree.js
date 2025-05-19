@@ -1,86 +1,92 @@
-"use client";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useRef } from "react";
-import SectionWrapper from "../SectionWrapper";
+'use client';
 
-gsap.registerPlugin( ScrollTrigger );
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect, useRef } from 'react';
+import SectionWrapper from '../SectionWrapper';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function SectionThree() {
-  const wrapperRef = useRef( null );
+  const wrapperRef = useRef(null);
 
   const paras = [
     {
-      text: "Founded in September 2023, REAL TIME VFX is a Hyderabad-based studio committed to delivering world-class animation and visual effects services.",
+      text: 'Founded in September 2023, REAL TIME VFX is a Hyderabad-based studio committed to delivering world-class animation and visual effects services.',
     },
     {
-      text: "At REAL TIME VFX, we see VFX as more than just a task—it’s an art form that demands passion, precision, and creativity. Unlike conventional studios, we approach every project as a unique opportunity to merge technical expertise with artistic vision. Our team of skilled artists and innovators ensures that every frame is crafted with dedication, bringing stories to life with unparalleled depth and realism.",
+      text: 'At REAL TIME VFX, we see VFX as more than just a task—it’s an art form that demands passion, precision, and creativity. Unlike conventional studios, we approach every project as a unique opportunity to merge technical expertise with artistic vision.',
     },
     {
-      text: "From concept to completion, we strive for excellence in every detail. Our mission is to enhance narratives, elevate visual storytelling, and transform ideas into breathtaking visuals that captivate audiences.",
+      text: 'From concept to completion, we strive for excellence in every detail...',
     },
     {
-      text: "Whether you need stunning cinematic visuals, realistic digital environments, or high-end CGI effects, REAL TIME VFX is your trusted partner in bringing imagination to life.",
+      text: 'Whether you need stunning cinematic visuals, realistic digital environments, or high-end CGI effects, REAL TIME VFX is your trusted partner in bringing imagination to life.',
     },
     {
-      text: "Experience the future of visual effects—today.",
+      text: 'Experience the future of visual effects—today.',
     },
   ];
 
-  useEffect( () => {
-    if ( wrapperRef.current ) {
-      requestAnimationFrame( () => {
-        const chars = wrapperRef.current.querySelectorAll( ".char" );
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
 
-        const tl = gsap.timeline( {
-          scrollTrigger: {
-            trigger: wrapperRef.current,
-            start: "-100px",
-            end: "70%",
-            scrub: true,
-            scroller: "[data-scroll-container]",
-          },
-        } );
+    const chars = wrapper.querySelectorAll('.char');
+    const redBall = wrapper.querySelector('.red-ball');
 
-        tl.fromTo(
-          chars,
-          { color: "#000" },
-          { color: "#fff", stagger: 0.03, duration: 2.5 }
-        );
+    if (!chars.length || !redBall) return;
 
-        tl.fromTo(
-          ".red-ball",
-          {
-            top: "-50px",
-            opacity: 0,
-          },
-          {
-            top: "20%",
-            opacity: 1,
-            duration: 2,
-            ease: "power2.out",
-          },
-          "<"
-        );
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: wrapper,
+        start: '8%',
+        end: 'bottom center',
+        scrub: true,
+        markers: false, // set to true for debug
+      },
+    });
 
-        tl.to(
-          ".red-ball",
-          {
-            scale: 70,
-            boxShadow: "0 0 100px 80px rgba(255, 0, 0, 0.2)",
-            duration: 2.5,
-            ease: "power2.out",
-          },
-          "<80%"
-        );
-      } );
-    }
-  }, [] );
+    tl.fromTo(
+      chars,
+      { color: '#000' },
+      { color: '#fff', stagger: 0.03, duration: 2.5 }
+    );
+
+    tl.fromTo(
+      redBall,
+      {
+        top: '-50px',
+        opacity: 0,
+      },
+      {
+        top: '20%',
+        opacity: 1,
+        duration: 2,
+        ease: 'power2.out',
+      },
+      '<'
+    );
+
+    tl.to(
+      redBall,
+      {
+        scale: 70,
+        boxShadow: '0 0 100px 80px rgba(255, 0, 0, 0.2)',
+        duration: 2.5,
+        ease: 'power2.out',
+      },
+      '<80%'
+    );
+
+    ScrollTrigger.refresh();
+  }, []);
 
   return (
     <div
+      id="foundation"
       ref={wrapperRef}
-      className=" relative z-[999] bg-white about_us overflow-hidden font-sans"
+      className="relative z-[999] bg-white about_us overflow-hidden font-sans"
     >
       <div className="absolute red-ball top-[-50px] left-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full bg-black border-4 border-white z-0"></div>
 
@@ -91,15 +97,31 @@ export default function SectionThree() {
               FOUNDATION
             </h1>
             <div className="text-[1.2rem] md:text-[1.5rem] font-light space-y-6 leading-relaxed tracking-tight text-gray-600">
-              {paras.map( ( line, lineKey ) => (
+              {paras.map((line, lineKey) => (
                 <div className="line" key={lineKey}>
-                  {line.text.split( "" ).map( ( char, charKey ) => (
+                  {line.text.split('').map((char, charKey) => (
                     <span className="char" key={`${lineKey}-${charKey}`}>
                       {char}
                     </span>
-                  ) )}
+                  ))}
                 </div>
-              ) )}
+              ))}
+              <div className=' w-full grid grid-cols-2'>
+<div className=' space-y-3 '>
+  <h1 className=' text-5xl font-extrabold text-[#34b6f6]'>30+</h1>
+  <p className=' text-lg font-medium text-white'>Industry experts</p>
+</div>
+
+               <div className=' space-y-3 '>
+  <h1 className=' text-5xl font-extrabold text-[#34b6f6]'>50+</h1>
+  <p className=' text-lg font-medium text-white'>Projects completed</p>
+</div> 
+
+
+
+
+
+              </div>
             </div>
           </div>
 
@@ -107,7 +129,7 @@ export default function SectionThree() {
             <img src="/RTV.png" alt="REAL TIME VFX Logo" className="max-w-full h-auto" />
           </div>
         </div>
-     </SectionWrapper>
+      </SectionWrapper>
     </div>
   );
 }

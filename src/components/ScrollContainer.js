@@ -20,7 +20,7 @@ const ScrollContainer = ( { children } ) => {
   }, [] );
 
   return (
-    <div data-scroll-container ref={scrollRef}>
+    <div  ref={scrollRef}>
       {children}
     </div>
   );

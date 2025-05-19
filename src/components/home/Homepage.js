@@ -8,7 +8,7 @@ import Services from "./Services";
 export default function Homepage() {
   const text = " Where Imagination Meets Innovation";
   return (
-    <div className="">
+    <div className=" z-[99] relative">
       <div className=" h-[100vh] relative">
         <video loop autoPlay muted src="h1.mp4" className=" w-full h-full object-cover  "></video>
         <div className=" absolute top-0 right-0 bottom-0 left-0 bg-[#34b6f6] opacity-10  " />

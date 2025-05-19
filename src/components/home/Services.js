@@ -46,13 +46,14 @@ export default function Services() {
 
   return (
     <div
+    id="services"
       ref={wrapperRef}
-      className="bg-white text-black  relative z-[999] font-sans"
+      className="bg-black text-white  relative z-[999] font-sans"
     >
       <SectionWrapper>
         <div className="space-y-6">
           <SectionTitle title={`Services`} />
-          <p className="text-lg md:text-2xl text-gray-600 max-w-3xl leading-relaxed  font-light">
+          <p className="text-lg md:text-2xl text-gray-300 max-w-3xl leading-relaxed  font-light">
             At REAL TIME VFX, we offer a comprehensive suite of high-end VFX
             services, tailored to meet the unique demands of each project.
           </p>
@@ -61,14 +62,14 @@ export default function Services() {
         <div className="space-y-16">
           {services.map( ( section, index ) => (
             <div key={index} className="space-y-6">
-              <h2 className="text-2xl leading-relaxed font-light text-gray-700">
+              <h2 className="text-2xl leading-relaxed font-light text-gray-400">
                 <span style={{ filter: "grayscale(100%)" }} className="">{section.icon}</span>  {section.category}
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
                 {section.services.map( ( item, itemIndex ) => (
                   <div
                     key={itemIndex}
-                    className="p-6 border border-gray-400 bg-gray-50 rounded-md text-center space-y-4 hover:shadow-lg transition"
+                    className="p-6  border-gray-400 bg-[#0e0d0d] rounded-md text-center space-y-4 hover:shadow-lg transition"
                   >
                     <div
                       style={{ filter: "grayscale(100%)" }}
@@ -76,7 +77,7 @@ export default function Services() {
                     >
                       {item.icon}
                     </div>
-                    <h3 className="text-base font-normal text-gray-800">
+                    <h3 className="text-base font-normal text-gray-300">
                       {item.name}
                     </h3>
                   </div>
